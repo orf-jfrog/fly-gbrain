@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 env:
-  IMAGE: ghcr.io/orfattal/fly-gbrain
+  IMAGE: ghcr.io/orf-jfrog/fly-gbrain
 
 jobs:
   build-and-deploy:
@@ -21,7 +21,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push image
