@@ -1,17 +1,16 @@
 services:
   - type: web
     name: fly-gbrain
-    env: docker
-    dockerfilePath: ./Dockerfile
+    runtime: image
+    image:
+      url: ghcr.io/orfattal/fly-gbrain:latest
     plan: free
     envVars:
       - key: GITHUB_TOKEN
-        sync: false  # set manually in Render dashboard
+        sync: false
       - key: DATABASE_URL
-        sync: false  # Supabase postgres connection string
-      - key: OPENAI_API_KEY
-        sync: false  # for embeddings
-      - key: ANTHROPIC_API_KEY
-        sync: false  # optional, improves search quality
+        sync: false
+      - key: ZERO_ENTROPY_API_KEY
+        sync: false
       - key: PUBLIC_URL
-        sync: false  # your Render service URL e.g. https://fly-gbrain.onrender.com
+        sync: false

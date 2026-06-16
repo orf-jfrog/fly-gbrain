@@ -8,16 +8,15 @@ else
   git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/orf-jfrog/ors-brain.git" /brain
 fi
 
-echo "==> Initializing gbrain..."
+echo "==> Initializing gbrain with Supabase (DATABASE_URL)..."
 gbrain init --yes 2>/dev/null || true
 gbrain apply-migrations --yes 2>/dev/null || true
 
 echo "==> Importing vault..."
 gbrain import /brain --no-embed --yes
-gbrain embed --stale
 
-echo "==> Creating auth token if not exists..."
-gbrain auth create "claude-code" --scopes "read write" 2>/dev/null || true
+echo "==> Generating embeddings..."
+gbrain embed --stale
 
 echo "==> Starting HTTP MCP server..."
 exec gbrain serve --http \
