@@ -1,21 +1,17 @@
 #!/bin/bash
 set -e
 
-echo "==> Cloning ors-brain from GitHub..."
+echo "==> Cloning/updating ors-brain from GitHub..."
 if [ -d "/brain/.git" ]; then
   git -C /brain pull
 else
   git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/orf-jfrog/ors-brain.git" /brain
 fi
 
-echo "==> Initializing gbrain with Supabase (DATABASE_URL)..."
-gbrain init --yes 2>/dev/null || true
-gbrain apply-migrations --yes 2>/dev/null || true
-
-echo "==> Importing vault..."
+echo "==> Syncing any new/changed files..."
 gbrain import /brain --no-embed --yes
 
-echo "==> Generating embeddings..."
+echo "==> Embedding stale pages..."
 gbrain embed --stale
 
 echo "==> Starting HTTP MCP server..."
