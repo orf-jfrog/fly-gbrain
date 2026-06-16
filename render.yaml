@@ -3,7 +3,7 @@ services:
     name: fly-gbrain
     runtime: image
     image:
-      url: ghcr.io/orf-jfrog/fly-gbrain:latest
+      url: ghcr.io/orfattal/fly-gbrain:latest
     plan: free
     envVars:
       - key: GITHUB_TOKEN
