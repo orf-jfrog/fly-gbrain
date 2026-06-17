@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 
-echo "==> Cloning/updating ors-brain from GitHub..."
+echo "==> Cloning/updating fly-product-brain from GitHub..."
 if [ -d "/brain/.git" ]; then
   git -C /brain pull
 else
-  git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/orf-jfrog/ors-brain.git" /brain
+  git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/orf-jfrog/fly-product-brain.git" /brain
 fi
 
 echo "==> Syncing any new/changed files..."
